@@ -2,9 +2,6 @@
 
 > In this article, we will explore and learn how to build a splash screen with SplashScreen API, which was introduced in Android 12.
 
-<br>
-A quick recap of a few basic stuff, feel free to skip it.
-
 ## What is a Splash Screen?
 
 It is the first view that is shown to a user as soon as you tap on the app icon. If you notice a blank white screen (for a
