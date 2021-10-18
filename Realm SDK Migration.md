@@ -137,11 +137,14 @@ schema["Pet"]?.run {
 In case, you want to delete the complete `Realm` you can use `deleteRealmIfMigrationNeeded` with
 `RealmConfiguration.Builder`, but that should be considered as the last resort.
 
-Thank you for reading, in the next article we would discuss how to migrate `Realm` database with
-sync. 
+Thank you for reading, if you have any queries or comment you can share it
+on [MongoDB Realm forum](https://www.mongodb.com/community/forums/c/realm/9) or tweet
+me [@codeWithMohit](http://twitter.com/codeWithMohit).
 
-You can also check out the iOS tutorial
-for [Realm iOS Migration](https://www.mongodb.com/developer/how-to/realm-schema-migration/). 
+In the next article we will discuss how to migrate the Realm database with sync.
+
+If you have an iOS app, do check out the iOS tutorial
+on [Realm iOS Migration](https://www.mongodb.com/developer/how-to/realm-schema-migration/). 
 
 
 
