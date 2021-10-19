@@ -28,8 +28,8 @@ fun setupRealm(context: Context) {
 }
 ```
 
-Doing migration in Realm is very straightforward and simple. For any database migration high level
-steps for successful migration would be
+Doing migration in Realm is very straightforward and simple. The high level steps for the successful
+migration of any database would be
 
 1. Update the database version.
 2. Make changes to the database schema.
@@ -39,7 +39,7 @@ steps for successful migration would be
 
 This is the simplest step, which can be done by incrementing the version of
 `REALM_SCHEMA_VERSION` which notify `Relam` about database changes which in turn run triggers
-migration if provided.
+migration, if provided.
 
 To add migration we use `migration` function available in `RealmConfiguration.Builder`, which take
 an argument of `RealmMigration`, which we would review in the next step.
@@ -48,16 +48,17 @@ an argument of `RealmMigration`, which we would review in the next step.
 val config = RealmConfiguration.Builder()
     .name(REALM_DB_NAME)
     .schemaVersion(REALM_SCHEMA_VERSION)
-    .migration(DBMigrationScript())
+    .migration(DBMigrationHelper())
     .build()
 ```
 
 ### Make changes to the database schema
 
-In `Realm` all the migration-related operation has to perform within the scope of `RealmMigration`.
+In `Realm` all the migration-related operation has to be performed within the scope of
+`RealmMigration`.
 
 ```kotlin
-class DBMigrationScript : RealmMigration {
+class DBMigrationHelper : RealmMigration {
 
     override fun migrate(realm: DynamicRealm, oldVersion: Long, newVersion: Long) {
         migration1to2(realm.schema)
@@ -95,7 +96,8 @@ private fun migration1to2(schema: RealmSchema) {
 
 ### Migrate user data from old schema to new
 
-All the data transformation during migration can be done with `transform` function
+All the data transformation during migration can be done with `transform` function with the help
+of `set` and `get` methods.
 
 ```kotlin
 
@@ -109,6 +111,9 @@ private fun migration2to3(schema: RealmSchema) {
     }
 }
 ```
+
+In the above snippet we are setting the default value of **fullName** by extracting the value from
+old data like **firstName** & **lastName**.
 
 We can also use `transform` to update the data type as well
 
