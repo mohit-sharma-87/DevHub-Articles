@@ -1,16 +1,17 @@
 # Migrating Realm SDK database - Local Database
 
-> This is followup article in **Getting Started Series**. In this article, we learn how to
-> modify/migrate realm **local only** database schema.
+> This is a follow-up article in the **[Getting Started Series](https://www.mongodb.com/developer/how-to/introduction-realm-sdk-android/)**.
+> In this article, we learn how to modify/migrate Realm **local only** database schema.
 
-As you add and change application features, you need to modify database schema and the need for
-migrations arises, which is very important for a seamless user experience. By the end of this
-article, you will learn
+As you add and change application features, you need to modify database schema, and the need for
+migrations arises, which is very important for a seamless user experience.
+
+By the end of this article, you will learn:
 
 1. How to update database schema post-production release on play store.
 2. How to migrate user data from one schema to another.
 
-Before we jump down to business, let's quickly recap how we set `Realm` in our application.
+Before we get down to business, let's quickly recap how we set `Realm` in our application.
 
 ```kotlin
 const val REALM_SCHEMA_VERSION: Long = 1
@@ -28,21 +29,21 @@ fun setupRealm(context: Context) {
 }
 ```
 
-Doing migration in Realm is very straightforward and simple. The high level steps for the successful
-migration of any database would be
+Doing migration in Realm is very straightforward and simple. The high-level steps for the successful
+migration of any database are:
 
 1. Update the database version.
 2. Make changes to the database schema.
 3. Migrate user data from old schema to new.
 
-### Update the database version
+### Update the Database Version
 
 This is the simplest step, which can be done by incrementing the version of
-`REALM_SCHEMA_VERSION` which notify `Relam` about database changes which in turn run triggers
+`REALM_SCHEMA_VERSION`, which notifies `Relam` about database changes. This, in turn, runs triggers
 migration, if provided.
 
-To add migration we use `migration` function available in `RealmConfiguration.Builder`, which take
-an argument of `RealmMigration`, which we would review in the next step.
+To add migration, we use the `migration` function available in `RealmConfiguration.Builder`, which
+takes an argument of `RealmMigration`, which we will review in the next step.
 
 ```kotlin
 val config = RealmConfiguration.Builder()
@@ -52,10 +53,10 @@ val config = RealmConfiguration.Builder()
     .build()
 ```
 
-### Make changes to the database schema
+### Make Changes to the Database Schema
 
-In `Realm` all the migration-related operation has to be performed within the scope of
-`RealmMigration`.
+In `Realm`, all the migration-related operation has to be performed within the scope
+of `RealmMigration`.
 
 ```kotlin
 class DBMigrationHelper : RealmMigration {
@@ -80,7 +81,7 @@ class DBMigrationHelper : RealmMigration {
 }
 ```
 
-To Add / Update / Rename any field
+To add/update/rename any field:
 
 ```kotlin
 
@@ -94,7 +95,7 @@ private fun migration1to2(schema: RealmSchema) {
 }
 ```
 
-### Migrate user data from old schema to new
+### Migrate User Data from Old Schema to New
 
 All the data transformation during migration can be done with `transform` function with the help
 of `set` and `get` methods.
@@ -112,10 +113,10 @@ private fun migration2to3(schema: RealmSchema) {
 }
 ```
 
-In the above snippet we are setting the default value of **fullName** by extracting the value from
-old data like **firstName** & **lastName**.
+In the above snippet, we are setting the default value of **fullName** by extracting the value from
+old data, like **firstName** and **lastName**.
 
-We can also use `transform` to update the data type as well
+We can also use `transform` to update the data type.
 
 ```kotlin
 
@@ -139,14 +140,14 @@ schema["Pet"]?.run {
 }
 ```
 
-In case, you want to delete the complete `Realm` you can use `deleteRealmIfMigrationNeeded` with
+In case you want to delete the complete `Realm`, you can use `deleteRealmIfMigrationNeeded` with
 `RealmConfiguration.Builder`, but that should be considered as the last resort.
 
-Thank you for reading, if you have any queries or comment you can share it
-on [MongoDB Realm forum](https://www.mongodb.com/community/forums/c/realm/9) or tweet
+Thank you for reading! If you have any queries or comments, you can share them on
+the [MongoDB Realm forum](https://www.mongodb.com/community/forums/c/realm/9) or tweet
 me [@codeWithMohit](http://twitter.com/codeWithMohit).
 
-In the next article we will discuss how to migrate the Realm database with sync.
+In the next article, we will discuss how to migrate the Realm database with sync.
 
 If you have an iOS app, do check out the iOS tutorial
 on [Realm iOS Migration](https://www.mongodb.com/developer/how-to/realm-schema-migration/). 
