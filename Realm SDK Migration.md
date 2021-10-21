@@ -3,6 +3,8 @@
 > This is a follow-up article in the **[Getting Started Series](https://www.mongodb.com/developer/how-to/introduction-realm-sdk-android/)**.
 > In this article, we learn how to modify/migrate Realm **local only** database schema.
 
+## Introduction
+
 As you add and change application features, you need to modify database schema, and the need for
 migrations arises, which is very important for a seamless user experience.
 
@@ -36,7 +38,7 @@ migration of any database are:
 2. Make changes to the database schema.
 3. Migrate user data from old schema to new.
 
-### Update the Database Version
+## Update the Database Version
 
 This is the simplest step, which can be done by incrementing the version of
 `REALM_SCHEMA_VERSION`, which notifies `Relam` about database changes. This, in turn, runs triggers
@@ -53,7 +55,7 @@ val config = RealmConfiguration.Builder()
     .build()
 ```
 
-### Make Changes to the Database Schema
+## Make Changes to the Database Schema
 
 In `Realm`, all the migration-related operation has to be performed within the scope
 of `RealmMigration`.
@@ -95,7 +97,7 @@ private fun migration1to2(schema: RealmSchema) {
 }
 ```
 
-### Migrate User Data from Old Schema to New
+## Migrate User Data from Old Schema to New
 
 All the data transformation during migration can be done with `transform` function with the help
 of `set` and `get` methods.
@@ -151,7 +153,3 @@ In the next article, we will discuss how to migrate the Realm database with sync
 
 If you have an iOS app, do check out the iOS tutorial
 on [Realm iOS Migration](https://www.mongodb.com/developer/how-to/realm-schema-migration/). 
-
-
-
-
