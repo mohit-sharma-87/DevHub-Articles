@@ -1,4 +1,4 @@
-# Migrating Realm SDK database - Local Database
+# How to Update Realm SDK Database Schema for Android
 
 > This is a follow-up article in the **[Getting Started Series](https://www.mongodb.com/developer/how-to/introduction-realm-sdk-android/)**.
 > In this article, we learn how to modify/migrate Realm **local** database schema.
