@@ -21,7 +21,7 @@ common module for all your data needs for all platforms. But this doesn't mean y
 Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing the
 previous implementation with the new one.
 
-In project level `build.gradle`
+In the project level `build.gradle`
 
 Earlier with Java SDK
 
