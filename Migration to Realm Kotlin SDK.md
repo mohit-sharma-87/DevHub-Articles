@@ -164,7 +164,7 @@ annotation like `@RealmClass` which is used for the embedded object.
 > Note: You can remove `Open` keyword against `class` which was mandatory for using Java SDK in
 > Kotlin.
 
-### Changes to querying 
+### Changes to querying
 
 The most exciting part starts from here 😎(IMO).
 
@@ -180,10 +180,10 @@ Use-case: As a user, I would like to register my visit as soon as I open the app
 
 Steps to complete the operation would be
 
-1. Login into the system.
-2. Based on user info create a sync config with the corresponding partition key.
-3. Open Realm instance
-4. Get Realm Transaction instance
+1. Authenticate with Realm SDK.
+2. Based on the user information, create a sync config with the partition key.
+3. Open Realm instance.
+4. Start a Realm Transaction.
 5. Query for current user visit count and based on that add/update count.
 
 With JAVA SDK:
@@ -255,12 +255,12 @@ private fun updateData() {
 }
 ```
 
-Upon quick comparing, you would notice that lines of code have decreased by 30% and we are using
+Upon quick comparing, you would notice that lines of code have decreased by 30%, and we are using
 coroutines for doing the async call, which is the natural way of doing asynchronous programming in
 Kotlin. Let's check this with one more example.
 
 Use-case: As user, I should be notified immediately about any change in user visit info. This is
-more like observing the change in the value of visit count.
+more like observing the change to visit count.
 
 With Java SDK:
 
@@ -322,16 +322,16 @@ fun onRefreshCount(): Flow<VisitInfo?> {
 ```
 
 Again upon quick comparing you would notice that lines of code have decreased drastically, by more
-than
-**50%**, and again using coroutines for doing async call and _Kotlin Flow_ to observe the value
-changes.
+than **50%**, and apart coroutines for doing async call, we are using _Kotlin Flow_ to observe the
+value changes.
 
 With this, as mentioned earlier, we are further able to reduce our boilerplate code,
 no [callback hell](http://callbackhell.com) and writing code is more natural now.
 
 ## Other major changes
 
-Realm Kotlin SDK is fundamentally little different from JAVA SDK in a few ways:
+Apart from Realm SDK being written in Kotlin language, it is fundamentally little different from
+JAVA SDK in a few ways:
 
 - **Frozen by default**: All objects are now frozen. Unlike live objects, frozen objects do not
   automatically update after the database writes. You can still access live objects within a write
@@ -342,6 +342,8 @@ Realm Kotlin SDK is fundamentally little different from JAVA SDK in a few ways:
 
 ## Should you migrate now?
 
-## Non supported features
+There is no straight answer to question, it really depends on usage, complexity of the app and time.
+But I think so this the right time to evaluate the efforts and changes required to migrate as Realm
+Kotlin SDK would be the future.   
 
 
