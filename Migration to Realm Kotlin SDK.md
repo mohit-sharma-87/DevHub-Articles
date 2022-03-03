@@ -138,42 +138,42 @@ With this, our Android app is ready to use the new Realm Kotlin SDK.
 ### Realm Initialization
 
 Traditionally before using Realm for querying information in our project, we had to initialize and
-set up few basic properties like name, version, sync config for database. Let's understand the
-impact on these.
+set up few basic properties like name, version with sync config for database. Let's understand the
+changes on these.
 
 Steps with JAVA SDK :
 
 1. Call `Realm.init()`
-2. Setup Realm DB properties like db name, version, migration rules etc using `RealmConfiguration`.
+2. Setup Realm DB properties like name, version, migration rules etc using `RealmConfiguration`.
 3. Setup logging
 4. Configure Realm Sync
 
 With Kotlin SDK :
 
 1. <s>Call `Realm.init()`</s> _Is not needed anymore_.
-2. Setup Realm DB properties like db name, version, migration rules etc using `RealmConfiguration` -
-   _Remain the same apart from a few minor changes_.
+2. Setup Realm DB properties like db name, version, migration rules etc. using `RealmConfiguration`-
+   _This remains the same apart from a few minor changes_.
 3. Setup logging - _This is moved to `RealmConfiguration`_
 4. Configure Realm Sync - _No changes_
 
 ### Changes to Models
 
-No changes are needed to model class for using Kotlin SDK, except you might have to remove few
-currently unsupported annotation like `@RealmClass` for the embedded object.
+No changes are required in model classes, except you might have to remove few currently unsupported
+annotation like `@RealmClass` which is used for the embedded object.
 
 > Note: You can remove `Open` keyword against `class` which was mandatory for using Java SDK in
 > Kotlin.
 
-### Changes on how to Query
+### Changes to querying 
 
 The most exciting part starts from here 😎(IMO).
 
 Traditionally Realm SDK has been on the top of the latest programming treads like Reactive
 programming (Rx), LiveData and many more but with the technological shift in Android programming
-language from Java to Kotlin, developers were not able to fully utilize the power the language and
-Realm SDK as underlying SDK was still in Java. A few of such were Coroutines, Kotlin Flow, etc.
+language from Java to Kotlin, developers were not able to fully utilize the power the language with
+Realm SDK as underlying SDK was still in Java, a few of them were Coroutines, Kotlin Flow, etc.
 
-But with the new Kotlin SDK that is all changed and further reduced the boiler code. Let's see
+But with the new Kotlin SDK that is all changed and has further reduced the boiler code. Let's see
 understand by example.
 
 Use-case: As a user, I would like to register my visit as soon as I open the app or screen.
