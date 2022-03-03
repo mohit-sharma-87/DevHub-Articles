@@ -45,7 +45,7 @@ Earlier with Java SDK
 }
 ```
 
-With Kotlin SDK, we can **delete the Realm plugin** from `dependencies`
+With the Kotlin SDK, we can **delete the Realm plugin** from `dependencies`
 
 ```kotlin
     buildscript {
