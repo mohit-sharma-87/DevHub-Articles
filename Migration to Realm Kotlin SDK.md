@@ -5,8 +5,8 @@
 
 ## Introduction
 
-Android has changed a lot in recent years, notably after Kotlin language as first class citizen, so
-does the Realm SDK. Realm has recently moved it's much awaited Kotlin SDK to beta enabling to use
+Android has changed a lot in recent years, notably after Kotlin language became first class 
+citizen, so does the Realm SDK. Realm has recently moved it's much awaited Kotlin SDK to beta enabling to use
 Realm more fluently with Kotlin and opening doors of Kotlin Multiplatform to them.
 
 Let's understand the changes required when you migrate from Java SDK to Kotlin starting from setup
