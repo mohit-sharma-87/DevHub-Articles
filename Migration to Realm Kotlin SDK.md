@@ -119,7 +119,7 @@ With Kotlin SDK,
 ```groovy
     dependencies {
 
-        implementation("io.realm.kotlin:library-sync:0.9.0")
+        implementation("io.realm.kotlin:library-sync:0.10.0")
 
     }
 ```
