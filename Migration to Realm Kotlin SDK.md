@@ -10,16 +10,16 @@ does the Realm SDK. Realm has recently moved it's much awaited Kotlin SDK to bet
 Realm more fluently with Kotlin and opening doors of Kotlin Multiplatform to them.
 
 Let's understand the changes required when you migrate from Java SDK to Kotlin starting from setup
-till usage.
+till its usage.
 
 ## Changes in setup
 
 The new Realm Kotlin SDK is based on Kotlin Multiplatform architecture which enables you to have one
-common module for all your data needs on all platforms. But this doesn't mean that to use the new
-SDK you would have to convert your Android app to KMM app right away, you can do that later.
+common module for all your data needs for all platforms. But this doesn't mean to use the new SDK
+you would have to convert your existing Android app to KMM app right away, you can do that later.
 
 Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing
-previous implementation and new one.
+previous implementation with new one.
 
 In project level `build.gradle`
 
@@ -45,7 +45,7 @@ Earlier with Java SDK
 }
 ```
 
-With Kotlin SDK, we can **delete the plugin** configuration
+With Kotlin SDK, we can **delete the Realm plugin** from `dependencies`
 
 ```kotlin
     buildscript {
@@ -68,8 +68,8 @@ In the module-level `build.gradle`
 
 With Java SDK, we added two properties
 
-1. Apply Realm Plugin
-2. Enable Sync
+1. Enabled Realm Plugin
+2. Enabled Sync, if applicable
 
 ```groovy
 
@@ -109,7 +109,6 @@ With Kotlin SDK,
 
 ```groovy
     android {
-
     ... ....
 
 }
@@ -118,7 +117,7 @@ With Kotlin SDK,
 3. Add Realm dependency under dependency tag
 
 ```groovy
-dependencies {
+    dependencies {
 
     implementation("io.realm.kotlin:library-sync:0.9.0")
 
@@ -138,11 +137,11 @@ With this, our Android app is ready to use the new Realm Kotlin SDK.
 
 ### Realm Initialization
 
-Traditionally before using Realm for querying in our project, we have to set up or initialize a few
-basic properties of our database like name, version, sync config etc. Let's understand the impact on
-these.
+Traditionally before using Realm for querying information in our project, we had to initialize and
+set up few basic properties like name, version, sync config for database. Let's understand the
+impact on these.
 
-With JAVA SDK :
+Steps with JAVA SDK :
 
 1. Call `Realm.init()`
 2. Setup Realm DB properties like db name, version, migration rules etc using `RealmConfiguration`.
