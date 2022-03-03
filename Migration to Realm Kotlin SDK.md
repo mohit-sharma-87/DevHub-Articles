@@ -23,7 +23,7 @@ previous implementation with the new one.
 
 In the project level `build.gradle`
 
-Earlier with Java SDK
+Earlier with the Java SDK
 
 ```kotlin
     buildscript {
