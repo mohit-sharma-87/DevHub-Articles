@@ -127,7 +127,7 @@ With Kotlin SDK,
 > If you are using only Realm mobile SDK, then you can add
 > ```groovy
 > dependencies {
->    implementation("io.realm.kotlin:library-base:0.9.0")
+>    implementation("io.realm.kotlin:library-base:0.10.0")
 > }
 >```
 
