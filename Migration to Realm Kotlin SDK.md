@@ -18,7 +18,7 @@ till its usage.
 The Realm Kotlin SDK supports the Kotlin Multiplatform architecture which enables you to have one
 common module for all your data needs for all platforms. But this doesn't mean you have to convert your app to KMM to use it, you can also use it directly in your Android app, and then later move to KMM.
 
-Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing the
+Let's understand the changes needed in the Gradle file to use Realm Kotlin SDK, by comparing the
 previous implementation with the new one.
 
 In the project level `build.gradle`
@@ -150,7 +150,7 @@ Steps with JAVA SDK :
 
 With Kotlin SDK :
 
-1. <s>Call `Realm.init()`</s> _Is not needed anymore_.
+1. <s>Call `Realm.init()`</s> _Is not needed anymore as this is done internally now_
 2. Setup Realm DB properties like db name, version, migration rules etc. using `RealmConfiguration`-
    _This remains the same apart from a few minor changes_.
 3. Setup logging - _This is moved to `RealmConfiguration`_
