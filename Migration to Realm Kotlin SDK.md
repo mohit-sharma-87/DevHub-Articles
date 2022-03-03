@@ -15,9 +15,8 @@ till its usage.
 
 ## Changes in setup
 
-The new Realm Kotlin SDK is based on Kotlin Multiplatform architecture which enables you to have one
-common module for all your data needs for all platforms. But this doesn't mean to use the new SDK
-you would have to convert your existing Android app to KMM app right away, you can do that later.
+The Realm Kotlin SDK supports the Kotlin Multiplatform architecture which enables you to have one
+common module for all your data needs for all platforms. But this doesn't mean you have to convert your app to KMM to use it, you can also use it directly in your Android app, and then later move to KMM.
 
 Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing the
 previous implementation with the new one.
