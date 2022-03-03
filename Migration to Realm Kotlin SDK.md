@@ -10,7 +10,7 @@ citizen, so does the Realm SDK. Realm has recently moved its much-awaited Kotlin
 enabling developers to use Realm more fluently with Kotlin and opening doors to the world of Kotlin 
 Multiplatform.
 
-Let's understand the changes required when you migrate from Java SDK to Kotlin starting from setup
+Let's understand the changes required when you migrate from Java to Kotlin SDK starting from setup
 till its usage.
 
 ## Changes in setup
@@ -19,8 +19,8 @@ The new Realm Kotlin SDK is based on Kotlin Multiplatform architecture which ena
 common module for all your data needs for all platforms. But this doesn't mean to use the new SDK
 you would have to convert your existing Android app to KMM app right away, you can do that later.
 
-Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing
-previous implementation with new one.
+Let's understand the changes needed in the gradle file to use Realm Kotlin SDK, by comparing the
+previous implementation with the new one.
 
 In project level `build.gradle`
 
@@ -67,7 +67,7 @@ With Kotlin SDK, we can **delete the Realm plugin** from `dependencies`
 
 In the module-level `build.gradle`
 
-With Java SDK, we added two properties
+With Java SDK, we 
 
 1. Enabled Realm Plugin
 2. Enabled Sync, if applicable
@@ -106,7 +106,7 @@ With Kotlin SDK,
 }
 ```
 
-2. Remove the Realm block under android
+2. Remove the Realm block under android tag
 
 ```groovy
     android {
@@ -115,7 +115,7 @@ With Kotlin SDK,
     }
 ```
 
-3. Add Realm dependency under dependency tag
+3. Add Realm dependency under `dependencies` tag
 
 ```groovy
     dependencies {
@@ -125,22 +125,22 @@ With Kotlin SDK,
     }
 ```
 
-> If you are using only Realm mobile SDK, then you can add
+> If you are using only Realm local SDK, then you can add
 > ```groovy
 > dependencies {
 >    implementation("io.realm.kotlin:library-base:0.10.0")
 > }
 >```
 
-With this, our Android app is ready to use the new Realm Kotlin SDK.
+With these changes, our Android app is ready to use Kotlin SDK.
 
 ## Changes in implementation
 
 ### Realm Initialization
 
 Traditionally before using Realm for querying information in our project, we had to initialize and
-set up few basic properties like name, version with sync config for database. Let's understand the
-changes on these.
+set up few basic properties like name, version with sync config for database, let's update them 
+as well.
 
 Steps with JAVA SDK :
 
@@ -159,8 +159,8 @@ With Kotlin SDK :
 
 ### Changes to Models
 
-No changes are required in model classes, except you might have to remove few currently unsupported
-annotation like `@RealmClass` which is used for the embedded object.
+No changes are required in model classes, except you might have to remove a few currently 
+unsupported annotations like `@RealmClass` which is used for the embedded object.
 
 > Note: You can remove `Open` keyword against `class` which was mandatory for using Java SDK in
 > Kotlin.
@@ -169,7 +169,7 @@ annotation like `@RealmClass` which is used for the embedded object.
 
 The most exciting part starts from here 😎(IMO).
 
-Traditionally Realm SDK has been on the top of the latest programming treads like Reactive
+Traditionally Realm SDK has been on the top of the latest programming trends like Reactive
 programming (Rx), LiveData and many more but with the technological shift in Android programming
 language from Java to Kotlin, developers were not able to fully utilize the power the language with
 Realm SDK as underlying SDK was still in Java, a few of them were Coroutines, Kotlin Flow, etc.
