@@ -94,14 +94,14 @@ plugins {
 
 With Kotlin SDK,
 
-1. Replace ``id 'realm-android'`` with  ``id("io.realm.kotlin") version "0.9.0"``
+1. Replace ``id 'realm-android'`` with  ``id("io.realm.kotlin") version "0.10.0"``
 
 ```groovy
     plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id("io.realm.kotlin") version "0.9.0"
+    id("io.realm.kotlin") version "0.10.0"
 }
 ```
 
@@ -111,7 +111,7 @@ With Kotlin SDK,
     android {
     ... ....
 
-}
+    }
 ```
 
 3. Add Realm dependency under dependency tag
@@ -119,9 +119,9 @@ With Kotlin SDK,
 ```groovy
     dependencies {
 
-    implementation("io.realm.kotlin:library-sync:0.9.0")
+        implementation("io.realm.kotlin:library-sync:0.9.0")
 
-}
+    }
 ```
 
 > If you are using only Realm mobile SDK, then you can add
