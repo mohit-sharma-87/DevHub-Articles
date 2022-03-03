@@ -171,15 +171,16 @@ The most exciting part starts from here 😎(IMO).
 
 Traditionally Realm SDK has been on the top of the latest programming trends like Reactive
 programming (Rx), LiveData and many more but with the technological shift in Android programming
-language from Java to Kotlin, developers were not able to fully utilize the power the language with
-Realm SDK as underlying SDK was still in Java, a few of them were Coroutines, Kotlin Flow, etc.
+language from Java to Kotlin, developers were not able to fully utilize the power of the language 
+with Realm as underlying SDK was still in Java, few of the notable were support for the Coroutines, 
+Kotlin Flow, etc.
 
-But with the new Kotlin SDK that is all changed and has further reduced the boiler code. Let's see
-understand by example.
+But with the Kotlin SDK that all has changed and further led to the reduction of boiler code. 
+Let's understand these by examples.
 
-Use-case: As a user, I would like to register my visit as soon as I open the app or screen.
+Example 1: As a user, I would like to register my visit as soon as I open the app or screen.
 
-Steps to complete the operation would be
+Steps to complete this operation would be
 
 1. Authenticate with Realm SDK.
 2. Based on the user information, create a sync config with the partition key.
@@ -260,7 +261,7 @@ Upon quick comparing, you would notice that lines of code have decreased by 30%,
 coroutines for doing the async call, which is the natural way of doing asynchronous programming in
 Kotlin. Let's check this with one more example.
 
-Use-case: As user, I should be notified immediately about any change in user visit info. This is
+Example 2: As user, I should be notified immediately about any change in user visit info. This is
 more like observing the change to visit count.
 
 With Java SDK:
@@ -323,7 +324,7 @@ fun onRefreshCount(): Flow<VisitInfo?> {
 ```
 
 Again upon quick comparing you would notice that lines of code have decreased drastically, by more
-than **50%**, and apart coroutines for doing async call, we are using _Kotlin Flow_ to observe the
+than **60%**, and apart coroutines for doing async call, we are using _Kotlin Flow_ to observe the
 value changes.
 
 With this, as mentioned earlier, we are further able to reduce our boilerplate code,
@@ -331,8 +332,8 @@ no [callback hell](http://callbackhell.com) and writing code is more natural now
 
 ## Other major changes
 
-Apart from Realm SDK being written in Kotlin language, it is fundamentally little different from
-JAVA SDK in a few ways:
+Apart from Realm Kotlin SDK being written in Kotlin language, it is fundamentally little different 
+from the JAVA SDK in a few ways:
 
 - **Frozen by default**: All objects are now frozen. Unlike live objects, frozen objects do not
   automatically update after the database writes. You can still access live objects within a write
@@ -344,7 +345,7 @@ JAVA SDK in a few ways:
 ## Should you migrate now?
 
 There is no straight answer to question, it really depends on usage, complexity of the app and time.
-But I think so this the right time to evaluate the efforts and changes required to migrate as Realm
-Kotlin SDK would be the future.   
+But I think so this the perfect time to evaluate the efforts and changes required to migrate as 
+Realm Kotlin SDK would be the future.
 
 
