@@ -377,15 +377,16 @@ no [callback hell](http://callbackhell.com) and writing code is more natural now
 
 ## Other major changes
 
-Apart from Realm Kotlin SDK being written in Kotlin language, it is fundamentally little different
-from the JAVA SDK in a few ways:
+Apart from, being able to leverage Kotlin's powerful features, Realm SDK has fundamentally changed a
+little from the JAVA SDK in a few ways:
+
+- **Thread-safety**: **We heard you** all realm instances, objects, query results, and collections
+  can now be transferred across threads. So no more `IllegalStateException` and objects can safely
+  be passed from UI thread to work thread and vice versa.
 
 - **Frozen by default**: All objects are now frozen. Unlike live objects, frozen objects do not
   automatically update after the database writes. You can still access live objects within a write
   transaction, but passing a live object out of a write transaction freezes the object.
-- **Thread-safety**: All realm instances, objects, query results, and collections can now be
-  transferred across threads.
-- **Singleton**: You now only need one instance of each realm.
 
 ## Should you migrate now?
 
