@@ -1,6 +1,6 @@
 # How to migrate from Realm Java SDK to Realm Kotlin SDK
 
-> This article is targeted to existing Realm developers who want to understand how to migrate to
+> This article is targeted at existing Realm developers who want to understand how to migrate to
 > Realm Kotlin SDK.
 
 ## Introduction
@@ -107,7 +107,7 @@ With Kotlin SDK,
 }
 ```
 
-2. Remove the Realm block under android tag
+2. Remove the Realm block under the android tag
 
 ```groovy
     android {
@@ -140,7 +140,7 @@ With these changes, our Android app is ready to use Kotlin SDK.
 ### Realm Initialization
 
 Traditionally before using Realm for querying information in our project, we had to set up database
-properties like name, version, migration rules etc. Let's change them according to new SDK.
+properties like name, version, migration rules etc. Let's change them according to the new SDK.
 
 Steps with JAVA SDK :
 
@@ -155,19 +155,19 @@ Now with the Kotlin SDK :
 2. Setup Realm DB properties like db name, version, migration rules etc. using `RealmConfiguration`-
    _This remains the same apart from a few minor changes_.
 3. Setup logging (optional) - _This is moved to `RealmConfiguration`_.
-4. **Adding list of Realm classes/models to `RealmConfiguration` builder as `schema`.**
+4. **Add a list of Realm classes(/models) to `RealmConfiguration` builder as a part of `schema`.**
 5. Configure Realm Sync - _No changes_.
 
 ### Changes to Models
 
-No major changes are required in model classes, only difference is `RealmObject` is now interface
-which was a base class earlier with which model classes were extended with.
+No major changes are required in model classes, the only difference is `RealmObject` is now an
+interface that was a base class earlier with which model classes were extended with.
 
-Apart this, few data types like `@RealmClass`,`ByteArray`,`RealmDictionary`,`RealmSet`, `ObjectId`,
-`Decimal128`,`UUID`, `@LinkingObjects`, are currently unsupported which needs to be removed but
-would be available in future releases.
+Apart from this, few data types like `@RealmClass`,`ByteArray`,`RealmDictionary`,`RealmSet`,
+`ObjectId`,`Decimal128`,`UUID`, `@LinkingObjects`, are currently unsupported and needs to be removed
+but would be available in future releases.
 
-> Note: Due to this changes `Open` keyword against `class`, no longer required.
+> Note: Due to these changes `Open` keyword against `class`, is no longer required.
 
 ### Changes to querying
 
@@ -176,8 +176,8 @@ The most exciting part starts from here 😎(IMO).
 Traditionally Realm SDK has been on the top of the latest programming trends like Reactive
 programming (Rx), LiveData and many more but with the technological shift in Android programming
 language from Java to Kotlin, developers were not able to fully utilize the power of the language
-with Realm as underlying SDK was still in Java. Due to this support for useful api like Coroutines, 
-Kotlin Flow, etc. was not available. 
+with Realm as underlying SDK was still in Java. Due to this support for useful API like Coroutines,
+Kotlin Flow, etc. was not available.
 
 But with the Kotlin SDK that all has changed and further led to the reduction of boiler code. Let's
 understand these by examples.
@@ -190,7 +190,7 @@ Steps to complete this operation would be
 2. Based on the user information, create a sync config with the partition key.
 3. Open Realm instance.
 4. Start a Realm Transaction.
-5. Query for current user visit count and based on that add/update count.
+5. Query the current user to get the visit count and update it.
 
 With JAVA SDK:
 
@@ -265,7 +265,7 @@ Upon quick comparing, you would notice that lines of code have decreased by **30
 coroutines for doing the async call, which is the natural way of doing asynchronous programming in
 Kotlin. Let's check this with one more example.
 
-Example 2: As user, I should be notified immediately about any change in user visit info. This is
+Example 2: As a user, I should be notified immediately about any change in user visit info. This is
 more like observing the change to visit count.
 
 With Java SDK:
@@ -369,10 +369,10 @@ val result = realm.write {
 }
 ```
 
-here, `write` is `suspend` function which return `object`, which can very helpful in reflecting the
-latest value on the UI.
+here, `write` is `suspend` function which return an `object`, which can very helpful in reflecting
+the latest value on the UI.
 
-With this, as mentioned earlier, we are further able to reduce our boilerplate code,
+With this you would agree that boilerplate code has been reduced,
 no [callback hell](http://callbackhell.com) and writing code is more natural now.
 
 ## Other major changes
@@ -389,8 +389,8 @@ from the JAVA SDK in a few ways:
 
 ## Should you migrate now?
 
-There is no straight answer to question, it really depends on usage, complexity of the app and time.
-But I think so this the perfect time to evaluate the efforts and changes required to migrate as
-Realm Kotlin SDK would be the future.
+There is no straight answer to this question, it depends on usage, the complexity and time available
+with the team for migration. But I think this is the perfect time to evaluate the efforts and
+changes required to migrate as Realm Kotlin SDK would be the future.
 
 
