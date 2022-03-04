@@ -16,9 +16,9 @@ till its usage.
 ## Changes in setup
 
 The Realm Kotlin SDK supports the Kotlin Multiplatform architecture which enables you to have one
-common module for all your data needs for all platforms. But this doesn't mean you have to convert
-your app to KMM to use it, you can also use it directly in your Android app, and then later move to
-KMM.
+common module for all your data needs on all platforms. But this doesn't mean you have to convert
+your app to KMM to use it. You can directly use it in your Android app and then later move to KMM
+app if you decide to.
 
 Let's understand the changes needed in the Gradle file to use Realm Kotlin SDK, by comparing the
 previous implementation with the new one.
@@ -139,36 +139,35 @@ With these changes, our Android app is ready to use Kotlin SDK.
 
 ### Realm Initialization
 
-Traditionally before using Realm for querying information in our project, we had to initialize and
-set up few basic properties like name, version with sync config for database, let's update them as
-well.
+Traditionally before using Realm for querying information in our project, we had to set up database
+properties like name, version, migration rules etc. Let's change them according to new SDK.
 
 Steps with JAVA SDK :
 
 1. Call `Realm.init()`
 2. Setup Realm DB properties like name, version, migration rules etc using `RealmConfiguration`.
-3. Setup logging (optional)
-4. Configure Realm Sync
+3. Setup logging(optional)
+4. Configure Realm Sync, if needed.
 
-With Kotlin SDK :
+Now with the Kotlin SDK :
 
-1. <s>Call `Realm.init()`</s> _Is not needed anymore as this is done internally now_
+1. <s>Call `Realm.init()`</s> _Is not needed anymore as this is done internally now on app startup_.
 2. Setup Realm DB properties like db name, version, migration rules etc. using `RealmConfiguration`-
    _This remains the same apart from a few minor changes_.
-3. Setup logging (optional) - _This is moved to `RealmConfiguration`_
+3. Setup logging (optional) - _This is moved to `RealmConfiguration`_.
 4. **Adding list of Realm classes/models to `RealmConfiguration` builder as `schema`.**
-5. Configure Realm Sync - _No changes_
+5. Configure Realm Sync - _No changes_.
 
 ### Changes to Models
 
-No major changes are required in model classes, only difference or change is they would
-implement `RealmObject` interface which was a base class earlier.
+No major changes are required in model classes, only difference is `RealmObject` is now interface
+which was a base class earlier with which model classes were extended with.
 
-Apart this few data types are also unsupported like `@RealmClass`,`ByteArray`,
-`RealmDictionary`, `RealmSet`, `ObjectId`, `Decimal128`,`UUID`, `@LinkingObjects`, which needs to be
-removed but would be available in future releases.
+Apart this, few data types like `@RealmClass`,`ByteArray`,`RealmDictionary`,`RealmSet`, `ObjectId`,
+`Decimal128`,`UUID`, `@LinkingObjects`, are currently unsupported which needs to be removed but
+would be available in future releases.
 
-> Note: Due to the above changes `Open` keyword against `class`, no longer required.
+> Note: Due to this changes `Open` keyword against `class`, no longer required.
 
 ### Changes to querying
 
@@ -177,8 +176,8 @@ The most exciting part starts from here 😎(IMO).
 Traditionally Realm SDK has been on the top of the latest programming trends like Reactive
 programming (Rx), LiveData and many more but with the technological shift in Android programming
 language from Java to Kotlin, developers were not able to fully utilize the power of the language
-with Realm as underlying SDK was still in Java, few of the notable were support for the Coroutines,
-Kotlin Flow, etc.
+with Realm as underlying SDK was still in Java. Due to this support for useful api like Coroutines, 
+Kotlin Flow, etc. was not available. 
 
 But with the Kotlin SDK that all has changed and further led to the reduction of boiler code. Let's
 understand these by examples.
