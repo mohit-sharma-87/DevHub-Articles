@@ -369,7 +369,7 @@ Similarly, saving information to Realm has also been simplified to
         }
 ```
 
-here, `write` is `suspend` function which return an `object`, which can very helpful in reflecting
+> `write` is `suspend` function which return an `object`, which can very helpful in reflecting
 the latest value on the UI.
 
 With this you would agree that boilerplate code has been reduced,
