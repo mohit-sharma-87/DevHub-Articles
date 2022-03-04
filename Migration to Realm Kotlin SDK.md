@@ -147,7 +147,7 @@ Steps with JAVA SDK :
 
 1. Call `Realm.init()`
 2. Setup Realm DB properties like name, version, migration rules etc using `RealmConfiguration`.
-3. Setup logging
+3. Setup logging (optional)
 4. Configure Realm Sync
 
 With Kotlin SDK :
@@ -155,19 +155,20 @@ With Kotlin SDK :
 1. <s>Call `Realm.init()`</s> _Is not needed anymore as this is done internally now_
 2. Setup Realm DB properties like db name, version, migration rules etc. using `RealmConfiguration`-
    _This remains the same apart from a few minor changes_.
-3. Setup logging - _This is moved to `RealmConfiguration`_
-4. Configure Realm Sync - _No changes_
+3. Setup logging (optional) - _This is moved to `RealmConfiguration`_
+4. **Adding list of Realm classes/models to `RealmConfiguration` builder as `schema`.**
+5. Configure Realm Sync - _No changes_
 
 ### Changes to Models
 
-No major changes are required in model classes. Models classes are now expected to implement 
-`RealmObject` interface which was a base class earlier.
+No major changes are required in model classes, only difference or change is they would
+implement `RealmObject` interface which was a base class earlier.
 
-Apart from that you might have to remove some currently unsupported type like `@RealmClass`
-,`ByteArray`, `RealmDictionary`, `RealmSet`, `ObjectId`, `Decimal128`,`UUID`, `@LinkingObjects`, 
-which would be available in future releases soon.
+Apart this few data types are also unsupported like `@RealmClass`,`ByteArray`,
+`RealmDictionary`, `RealmSet`, `ObjectId`, `Decimal128`,`UUID`, `@LinkingObjects`, which needs to be
+removed but would be available in future releases.
 
-> Note: Due to the above changes `Open` keyword against `class`, no longer required. 
+> Note: Due to the above changes `Open` keyword against `class`, no longer required.
 
 ### Changes to querying
 
@@ -261,7 +262,7 @@ private fun updateData() {
 }
 ```
 
-Upon quick comparing, you would notice that lines of code have decreased by 30%, and we are using
+Upon quick comparing, you would notice that lines of code have decreased by **30%** and we are using
 coroutines for doing the async call, which is the natural way of doing asynchronous programming in
 Kotlin. Let's check this with one more example.
 
@@ -328,8 +329,49 @@ fun onRefreshCount(): Flow<VisitInfo?> {
 ```
 
 Again upon quick comparing you would notice that lines of code have decreased drastically, by more
-than **60%**, and apart coroutines for doing async call, we are using _Kotlin Flow_ to observe the
-value changes.
+than **60%**. What led to such a drastic change?
+
+Earlier (with Java SDK) all the blocking API calls like authentication, opening Realm, writing to
+Realm, opening a transaction all were based on the callback mechanism which added to boilerplate and
+callback hell. Now since Realm Kotlin SDK is based on Kotlin language we can use powerful API like
+coroutines, flows, etc. and leverage its power and simplicity.
+
+So earlier code block like this
+
+```kotlin
+    realmApp.loginAsync(Credentials.anonymous()) {
+    if (it.isSuccess) {
+        // on success
+    } else {
+        // on failure
+    }
+}
+```
+
+is converted to just **one line**
+
+```kotlin
+    val user = realmApp.login(Credentials.anonymous())
+```
+
+where `login` is a `suspend` function.
+
+Similarly, saving information to Realm has also been simplified to
+
+```kotlin
+        val realm = Realm.open(configuration = config)
+val result = realm.write {
+    val visitInfo = this.query<VisitInfo>().first().find()
+    copyToRealm(visitInfo?.updateCount()
+        ?: VisitInfo().apply {
+            partition = user.identity
+            visitCount = 1
+        })
+}
+```
+
+here, `write` is `suspend` function which return `object`, which can very helpful in reflecting the
+latest value on the UI.
 
 With this, as mentioned earlier, we are further able to reduce our boilerplate code,
 no [callback hell](http://callbackhell.com) and writing code is more natural now.
