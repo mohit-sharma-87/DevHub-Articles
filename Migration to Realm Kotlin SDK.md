@@ -359,14 +359,14 @@ Similarly, saving information to Realm has also been simplified to
 
 ```kotlin
         val realm = Realm.open(configuration = config)
-val result = realm.write {
-    val visitInfo = this.query<VisitInfo>().first().find()
-    copyToRealm(visitInfo?.updateCount()
-        ?: VisitInfo().apply {
-            partition = user.identity
-            visitCount = 1
-        })
-}
+        val result = realm.write {
+            val visitInfo = this.query<VisitInfo>().first().find()
+            copyToRealm(visitInfo?.updateCount()
+                ?: VisitInfo().apply {
+                    partition = user.identity
+                    visitCount = 1
+                })
+        }
 ```
 
 here, `write` is `suspend` function which return an `object`, which can very helpful in reflecting
